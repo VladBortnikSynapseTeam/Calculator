@@ -151,6 +151,14 @@ export class MainContainerComponent implements OnInit {
           console.log(this.calculatingProcess)
           break;
         case CalculatorAction.Divide:
+          if(this.calculatingProcess.num2 === '0'){
+            this.calculatingProcess.result = 'Undefined'
+            this.calculatingProcess.num1 = '';
+            this.calculatingProcess.num2 = '';
+            this.calculatingProcess.action = '';
+            this.calculatingProcess.isSecondNumber = false;
+            console.log('undefined')
+          } else {
           this.calculatingProcess.result = (parseFloat(this.calculatingProcess.num1.replace(',','.'))  / parseFloat(this.calculatingProcess.num2.replace(',','.'))).toString().replace('.',',').slice(0,10);
           this.calculatingProcess.num1 = '';
           this.calculatingProcess.num2 = '';
@@ -158,6 +166,7 @@ export class MainContainerComponent implements OnInit {
           this.calculatingProcess.isSecondNumber = false;
           console.log(this.calculatingProcess)
           break;
+        }
       }
     }
   }
